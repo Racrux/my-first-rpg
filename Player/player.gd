@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
 # multiply delta to make it frame-independent (real-world time)
-const ACCELERATION = 50
-const MAX_SPEED = 200
-const FRICTION = 400
+const ACCELERATION = 500
+const MAX_SPEED = 80
+const FRICTION = 500
 
 func _physics_process(delta):
 	var input_vector = Vector2.ZERO
@@ -13,11 +13,11 @@ func _physics_process(delta):
 	input_vector = input_vector.normalized()
 
 	if input_vector != Vector2.ZERO:
-		velocity += input_vector * ACCELERATION * delta
-		# IMPORTANT: Godot v4 has limit_length() instead of clamped()
-		# Reference: https://forum.godotengine.org/t/clamped-doesnt-work-godot-4-0/1284/6
-		velocity = velocity.limit_length(MAX_SPEED * delta)
+		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
+	
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 
-	move_and_collide(velocity)
+	# move_and_slide automatically applies delta
+	# Godot v4 also automatically uses velocity defined unlike Godot v3.2
+	move_and_slide()
