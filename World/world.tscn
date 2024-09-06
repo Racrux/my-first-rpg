@@ -1,34 +1,30 @@
-[gd_scene load_steps=5 format=3 uid="uid://dcmy66olvcqnf"]
+[gd_scene load_steps=3 format=3 uid="uid://dcmy66olvcqnf"]
 
-[ext_resource type="Texture2D" uid="uid://qko3x48spx1j" path="res://World/Bush.png" id="1_5k2ff"]
-[ext_resource type="Texture2D" uid="uid://cuq0ml0aaoh0m" path="res://Player/Player.png" id="2_gn1hx"]
-[ext_resource type="Script" path="res://Player/player.gd" id="2_m8qqo"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ww2ci"]
-radius = 4.0
-height = 12.0
+[ext_resource type="PackedScene" uid="uid://ddrg6mqo2n3lk" path="res://Player/player.tscn" id="2_80a6v"]
+[ext_resource type="PackedScene" uid="uid://dyjmx0e31nbjp" path="res://World/bush.tscn" id="2_wnvm6"]
 
 [node name="world" type="Node2D"]
+y_sort_enabled = true
 
-[node name="Bush" type="Sprite2D" parent="."]
-position = Vector2(28, 23)
-texture = ExtResource("1_5k2ff")
-
-[node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(129, 41)
-script = ExtResource("2_m8qqo")
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
-texture = ExtResource("2_gn1hx")
-hframes = 60
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(0, 9)
-rotation = -1.5708
-shape = SubResource("CapsuleShape2D_ww2ci")
+[node name="Player" parent="." instance=ExtResource("2_80a6v")]
+position = Vector2(120, 48)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PackedVector2Array(0, 0, 48, 0, 48, 16, 40, 24, 48, 32, 48, 40, 48, 48, 56, 56, 56, 56, 56, 88, 40, 104, 72, 128, 80, 152, 104, 112, 152, 184, 168, 176, 192, 168, 224, 168, 232, 160, 264, 96, 272, 128, 304, 136, 296, 96, 296, 64, 304, 40, 304, 24, 320, 0, 320, 176, 320, 192, 0, 192)
+[node name="Bush" parent="." instance=ExtResource("2_wnvm6")]
+position = Vector2(24, 24)
+
+[node name="Bush2" parent="." instance=ExtResource("2_wnvm6")]
+position = Vector2(96, 112)
+
+[node name="Bush3" parent="." instance=ExtResource("2_wnvm6")]
+position = Vector2(208, 80)
+
+[node name="Bush4" parent="." instance=ExtResource("2_wnvm6")]
+position = Vector2(40, 120)
+
+[node name="Bush5" parent="." instance=ExtResource("2_wnvm6")]
+position = Vector2(160, 152)
+
+[node name="Bush6" parent="." instance=ExtResource("2_wnvm6")]
+position = Vector2(280, 56)
