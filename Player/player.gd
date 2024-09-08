@@ -8,6 +8,9 @@ const FRICTION = 500
 # GODOTv4 uses @annotation 
 # Reference: https://forum.godotengine.org/t/onready-unexpected-identifier/10532/2
 @onready var animationPlayer = $AnimationPlayer
+@onready var animationTree = $AnimationTree
+# getting access to root infomration for animationTree; can mainpulate proper animations
+@onready var animationState = animationTree.get("parameters/playback")
 
 func _physics_process(delta):
 	var input_vector = Vector2.ZERO
@@ -17,15 +20,14 @@ func _physics_process(delta):
 	input_vector = input_vector.normalized()
 
 	if input_vector != Vector2.ZERO:
-		if input_vector.x > 0:
-			animationPlayer.play("RunRight")
-		else:
-			animationPlayer.play("RunLeft")
-
+		# set blend position for idle/run
+		animationTree.set("parameters/Idle/blend_position", input_vector)
+		animationTree.set("parameters/Run/blend_position", input_vector)
+		animationState.travel("Run")
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
 	
 	else:
-		animationPlayer.play("IdleRight")
+		animationState.travel("Idle")
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 
 	# move_and_slide automatically applies delta
