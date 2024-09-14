@@ -50,10 +50,11 @@ animations = [{
 script = ExtResource("1_d7ixt")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
-z_index = 2
+z_index = 1
 y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_v427i")
 animation = &"Animate"
+autoplay = "Animate"
 frame = 4
 frame_progress = 1.0
 centered = false
