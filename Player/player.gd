@@ -70,6 +70,7 @@ func move_state(delta):
 func attack_state(delta):
 	# no velocity during motion
 	velocity = Vector2.ZERO
+	
 	animationState.travel("Attack")
 
 func attack_animation_finished():
