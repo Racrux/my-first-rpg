@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+
+const EnemyDeathEffect = preload("res://Effects/enemy_death_effect.tscn")
+
 @onready var stats = $Stats
 
 var KNOCKBACK_FORCE = 160
@@ -19,8 +22,6 @@ func _on_hurtbox_area_entered(area):
 	stats.health -= area.damage
 	#print(stats.health)
 	
-	
-
 	var pivot = area.get_parent()
 	var player = pivot.get_parent()
 	
@@ -28,3 +29,6 @@ func _on_hurtbox_area_entered(area):
 
 func _on_stats_no_health():
 	queue_free()
+	var enemyDeathEffect = EnemyDeathEffect.instantiate()
+	get_parent().add_child(enemyDeathEffect)
+	enemyDeathEffect.global_position = global_position

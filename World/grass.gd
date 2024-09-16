@@ -1,17 +1,15 @@
 extends Node2D
 
+# load once and reuse 
+const GrassEffect = preload("res://Effects/grass_effect.tscn")
+
+
 func create_grass_effect():
-	var GrassEffect = load("res://Effects/grass_effect.tscn")
 	# Node
 	# In GODOT v4, use "instantiate()" instead of "instance()"
 	var grassEffect = GrassEffect.instantiate()
-		
-	# Gets current main scene of scene tree (remote, NOT local)
-	var world = get_tree().current_scene
-	# add the instance of GrassEffect scene
-	world.add_child(grassEffect)
-	# set grass effect's global position to global position of the grass
-		
+	get_parent().add_child(grassEffect)
+	
 	# REMEBER TO ATTACH SCRIPT TO EACH AFFECTED NODES!!!
 	grassEffect.global_position = global_position
 

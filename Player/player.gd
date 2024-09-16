@@ -16,7 +16,7 @@ enum{
 
 var state = MOVE
 # sets roll vector while attempting to move, if input vector = zero --> no roll
-var roll_vector = Vector2.LEFT
+var roll_vector = Vector2.DOWN
 
 # GODOTv4 uses @annotation 
 # Reference: https://forum.godotengine.org/t/onready-unexpected-identifier/10532/2
