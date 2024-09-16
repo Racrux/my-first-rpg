@@ -1,12 +1,12 @@
 extends CharacterBody2D
 
 # multiply delta to make it frame-independent (real-world time)
-const ACCELERATION = 500
-const MAX_SPEED = 80
+@export var ACCELERATION = 500
+@export var MAX_SPEED = 80
 # different from one on video
 # suggested 120, somehow too fast on mine
-const ROLL_SPEED = 1.5
-const FRICTION = 500
+@export var ROLL_SPEED = 1.5
+@export var FRICTION = 500
 
 enum{
 	MOVE,
