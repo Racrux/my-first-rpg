@@ -1,8 +1,9 @@
-[gd_scene load_steps=52 format=3 uid="uid://ddrg6mqo2n3lk"]
+[gd_scene load_steps=54 format=3 uid="uid://ddrg6mqo2n3lk"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_30tlw"]
 [ext_resource type="Texture2D" uid="uid://cuq0ml0aaoh0m" path="res://Player/Player.png" id="2_sn88k"]
 [ext_resource type="PackedScene" uid="uid://cpgc8fs8hcngg" path="res://Overlap/hitbox.tscn" id="3_vq5wx"]
+[ext_resource type="PackedScene" uid="uid://7naidbv31fsd" path="res://Overlap/hurtbox.tscn" id="4_ieihj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ww2ci"]
 radius = 4.0
@@ -685,6 +686,10 @@ graph_offset = Vector2(-192.688, 7.73041)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_afxtv"]
 height = 32.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fq7pp"]
+radius = 6.0
+height = 16.0
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_30tlw")
@@ -727,4 +732,15 @@ position = Vector2(14, -4)
 shape = SubResource("CapsuleShape2D_afxtv")
 disabled = true
 
+[node name="Hurtbox" parent="." instance=ExtResource("4_ieihj")]
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(-1, -4)
+shape = SubResource("CapsuleShape2D_fq7pp")
+debug_color = Color(1, 0.417669, 0.541326, 0.42)
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+
 [editable path="HitboxPivot/SwordHitBox"]
+[editable path="Hurtbox"]

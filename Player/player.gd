@@ -15,6 +15,7 @@ enum{
 }
 
 var state = MOVE
+var stats = PlayerStats
 # sets roll vector while attempting to move, if input vector = zero --> no roll
 var roll_vector = Vector2.DOWN
 
@@ -24,9 +25,10 @@ var roll_vector = Vector2.DOWN
 @onready var animationTree = $AnimationTree
 # getting access to root infomration for animationTree; can mainpulate proper animations
 @onready var animationState = animationTree.get("parameters/playback")
-
+@onready var hurtbox = $Hurtbox
 
 func _ready():
+	self.stats.connect("no_health", queue_free)
 	animationTree.active = true
 
 func _physics_process(delta):
@@ -99,3 +101,8 @@ func move():
 
 func attack_animation_finished():
 	state = MOVE
+
+func _on_hurtbox_area_entered(area):
+	stats.health -= 1
+	hurtbox.start_invicibility(0.5)
+	hurtbox.create_hit_effect()

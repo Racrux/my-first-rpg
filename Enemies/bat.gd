@@ -16,6 +16,7 @@ enum{
 @onready var sprite = $AnimatedSprite
 @onready var stats = $Stats
 @onready var playerDetectionZone = $PlayerDetectionZone
+@onready var hurtbox = $Hurtbox
 
 var KNOCKBACK_FORCE = 160
 var KNOCKBACK_FRICTION = 500
@@ -66,6 +67,8 @@ func _on_hurtbox_area_entered(area):
 	var player = pivot.get_parent()
 	
 	velocity = player.roll_vector * KNOCKBACK_FORCE
+	hurtbox.create_hit_effect()
+
 
 func _on_stats_no_health():
 	queue_free()
