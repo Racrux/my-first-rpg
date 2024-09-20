@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://dcmy66olvcqnf"]
+[gd_scene load_steps=14 format=4 uid="uid://dcmy66olvcqnf"]
 
 [ext_resource type="Texture2D" uid="uid://b6413ybapystf" path="res://World/GrassBackground.png" id="1_w3s18"]
 [ext_resource type="PackedScene" uid="uid://ddrg6mqo2n3lk" path="res://Player/player.tscn" id="2_80a6v"]
@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://dyjmx0e31nbjp" path="res://World/bush.tscn" id="2_wnvm6"]
 [ext_resource type="Texture2D" uid="uid://dxy1yo0158sjy" path="res://World/CliffTileset.png" id="3_wbafl"]
 [ext_resource type="PackedScene" uid="uid://ddve35vypc4ah" path="res://World/grass.tscn" id="6_wrsds"]
+[ext_resource type="PackedScene" uid="uid://d4ag1qub51fqo" path="res://World/tree.tscn" id="7_avfnb"]
 [ext_resource type="PackedScene" uid="uid://n5nu5bsw527d" path="res://Enemies/bat.tscn" id="7_d4k0d"]
+[ext_resource type="PackedScene" uid="uid://usbx7w0xhksh" path="res://UI/health_ui.tscn" id="8_sf572"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_cfics"]
 
@@ -1233,6 +1235,7 @@ y_sort_enabled = true
 
 [node name="Player" parent="Ysort" instance=ExtResource("2_80a6v")]
 z_index = 2
+y_sort_enabled = true
 position = Vector2(152, 34)
 collision_mask = 33
 ROLL_SPEED = 1.25
@@ -1291,8 +1294,18 @@ position = Vector2(224, 96)
 [node name="Grass9" parent="Ysort/Grass" instance=ExtResource("6_wrsds")]
 position = Vector2(240, 96)
 
+[node name="Trees" type="Node2D" parent="Ysort"]
+z_index = 2
+y_sort_enabled = true
+
+[node name="Tree" parent="Ysort/Trees" instance=ExtResource("7_avfnb")]
+position = Vector2(304, 168)
+
+[node name="Tree2" parent="Ysort/Trees" instance=ExtResource("7_avfnb")]
+position = Vector2(245, 56)
+
 [node name="Bat" parent="Ysort" instance=ExtResource("7_d4k0d")]
-position = Vector2(70, 152)
+position = Vector2(24, 154)
 
 [node name="Bat2" parent="Ysort" instance=ExtResource("7_d4k0d")]
 position = Vector2(245, 132)
@@ -1302,3 +1315,5 @@ position = Vector2(75, 68)
 
 [node name="Bat4" parent="Ysort" instance=ExtResource("7_d4k0d")]
 position = Vector2(240, 48)
+
+[node name="HealthUI" parent="." instance=ExtResource("8_sf572")]
