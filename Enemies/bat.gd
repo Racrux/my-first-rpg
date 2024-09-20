@@ -17,6 +17,7 @@ enum{
 @onready var stats = $Stats
 @onready var playerDetectionZone = $PlayerDetectionZone
 @onready var hurtbox = $Hurtbox
+@onready var softCollision = $SoftCollision
 
 var KNOCKBACK_FORCE = 160
 var KNOCKBACK_FRICTION = 500
@@ -51,7 +52,8 @@ func _physics_process(delta):
 				state = IDLE
 			# face the player
 			sprite.flip_h = velocity.x < 0		
-
+	if softCollision.is_colliding():
+		velocity += softCollision.get_push_vector() * delta * 400
 	move_and_slide()		
 
 func seek_player():
