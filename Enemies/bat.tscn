@@ -141,7 +141,7 @@ material = SubResource("ShaderMaterial_babbi")
 sprite_frames = SubResource("SpriteFrames_2q2ou")
 animation = &"Fly"
 autoplay = "Fly"
-frame_progress = 0.945611
+frame_progress = 0.854455
 offset = Vector2(0, -12)
 
 [node name="ShadowSprite" type="Sprite2D" parent="."]
