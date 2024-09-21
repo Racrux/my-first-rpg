@@ -18,6 +18,7 @@ enum{
 @onready var hurtbox = $Hurtbox
 @onready var softCollision = $SoftCollision
 @onready var wanderController = $WanderController
+@onready var animationPlayer = $AnimationPlayer
 
 var KNOCKBACK_FORCE = 160
 var KNOCKBACK_FRICTION = 500
@@ -95,6 +96,7 @@ func _on_hurtbox_area_entered(area):
 	
 	velocity = player.roll_vector * KNOCKBACK_FORCE
 	hurtbox.create_hit_effect()
+	hurtbox.start_invicibility(0.4)
 
 
 func _on_stats_no_health():
@@ -102,3 +104,10 @@ func _on_stats_no_health():
 	var enemyDeathEffect = EnemyDeathEffect.instantiate()
 	get_parent().add_child(enemyDeathEffect)
 	enemyDeathEffect.global_position = global_position
+
+
+func _on_hurtbox_invincibility_ended() -> void:
+	animationPlayer.play("Stop")
+
+func _on_hurtbox_invincibility_started() -> void:
+	animationPlayer.play("Start")

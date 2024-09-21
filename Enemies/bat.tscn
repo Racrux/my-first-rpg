@@ -1,14 +1,20 @@
-[gd_scene load_steps=21 format=3 uid="uid://n5nu5bsw527d"]
+[gd_scene load_steps=27 format=3 uid="uid://n5nu5bsw527d"]
 
 [ext_resource type="Script" path="res://Enemies/bat.gd" id="1_uo6y6"]
 [ext_resource type="Texture2D" uid="uid://bfwog5cl7hwr6" path="res://Enemies/Bat.png" id="1_vvig8"]
 [ext_resource type="Texture2D" uid="uid://dljwjtwjdrk5q" path="res://Shadows/SmallShadow.png" id="2_8mci3"]
+[ext_resource type="Shader" path="res://whiteColorShader.gdshader" id="2_ne4s3"]
 [ext_resource type="PackedScene" uid="uid://7naidbv31fsd" path="res://Overlap/hurtbox.tscn" id="3_ak7iy"]
 [ext_resource type="PackedScene" uid="uid://bo03g5xnrxwux" path="res://stats.tscn" id="5_fvuoh"]
 [ext_resource type="PackedScene" uid="uid://c800m1pwexqyg" path="res://Enemies/player_detection_zone.tscn" id="6_ne3m4"]
 [ext_resource type="PackedScene" uid="uid://cpgc8fs8hcngg" path="res://Overlap/hitbox.tscn" id="7_bpuis"]
 [ext_resource type="PackedScene" uid="uid://bh85xn4xkguk3" path="res://Overlap/soft_collision.tscn" id="8_fo6r2"]
 [ext_resource type="PackedScene" uid="uid://85vb7bcks7y2" path="res://Enemies/wander_controller.tscn" id="9_3c656"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_babbi"]
+resource_local_to_scene = true
+shader = ExtResource("2_ne4s3")
+shader_parameter/active = false
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wuf4c"]
 atlas = ExtResource("1_vvig8")
@@ -69,6 +75,61 @@ radius = 5.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_li46h"]
 radius = 5.0
 
+[sub_resource type="Animation" id="Animation_q5sge"]
+resource_name = "Start"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_fl132"]
+resource_name = "Stop"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_0jkwv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w7nim"]
+_data = {
+"RESET": SubResource("Animation_0jkwv"),
+"Start": SubResource("Animation_q5sge"),
+"Stop": SubResource("Animation_fl132")
+}
+
 [node name="Bat" type="CharacterBody2D"]
 z_index = 2
 y_sort_enabled = true
@@ -76,11 +137,11 @@ collision_layer = 16
 script = ExtResource("1_uo6y6")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_babbi")
 sprite_frames = SubResource("SpriteFrames_2q2ou")
 animation = &"Fly"
 autoplay = "Fly"
-frame = 4
-frame_progress = 1.0
+frame_progress = 0.945611
 offset = Vector2(0, -12)
 
 [node name="ShadowSprite" type="Sprite2D" parent="."]
@@ -127,7 +188,15 @@ debug_color = Color(0.468751, 0.57737, 0.362169, 0.42)
 
 [node name="WanderController" parent="." instance=ExtResource("9_3c656")]
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+reset_on_save = false
+libraries = {
+"": SubResource("AnimationLibrary_w7nim")
+}
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="invincibility_ended" from="Hurtbox" to="." method="_on_hurtbox_invincibility_ended"]
+[connection signal="invincibility_started" from="Hurtbox" to="." method="_on_hurtbox_invincibility_started"]
 [connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
 
 [editable path="Hurtbox"]

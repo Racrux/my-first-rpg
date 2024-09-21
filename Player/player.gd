@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+const PlayerHurtSound = preload("res://Player/player_hurt_sound.tscn")
+
+
 # multiply delta to make it frame-independent (real-world time)
 @export var ACCELERATION = 500
 @export var MAX_SPEED = 80
@@ -26,6 +29,7 @@ var roll_vector = Vector2.DOWN
 # getting access to root infomration for animationTree; can mainpulate proper animations
 @onready var animationState = animationTree.get("parameters/playback")
 @onready var hurtbox = $Hurtbox
+@onready var blinkAnimationPlayer = $BlinkAnimationPlayer
 
 func _ready():
 	self.stats.connect("no_health", queue_free)
@@ -38,10 +42,10 @@ func _physics_process(delta):
 			move_state(delta)
 
 		ROLL: 
-			roll_state(delta)
+			roll_state()
 
 		ATTACK:
-			attack_state(delta)
+			attack_state()
 
 func move_state(delta):
 	var input_vector = Vector2.ZERO
@@ -77,7 +81,7 @@ func move_state(delta):
 	if Input.is_action_just_pressed("attack"):
 		state = ATTACK
 
-func roll_state(delta):
+func roll_state():
 	# no acceleration
 	velocity = roll_vector * MAX_SPEED * ROLL_SPEED
 	animationState.travel("Roll")
@@ -88,7 +92,7 @@ func roll_animation_finished():
 	velocity = velocity * 0.8
 	state = MOVE
 
-func attack_state(delta):
+func attack_state():
 	# no velocity during motion
 	velocity = Vector2.ZERO
 	
@@ -102,7 +106,18 @@ func move():
 func attack_animation_finished():
 	state = MOVE
 
+# _ makes warning ignored
 func _on_hurtbox_area_entered(area):
-	stats.health -= 1
-	hurtbox.start_invicibility(0.5)
+	stats.health -= area.damage
+	hurtbox.start_invicibility(0.6)
 	hurtbox.create_hit_effect()
+	var playerHurtSound = PlayerHurtSound.instantiate()
+	get_tree().current_scene.add_child(playerHurtSound)
+
+func _on_hurtbox_invincibility_started() -> void:
+	blinkAnimationPlayer.play("Start")
+
+func _on_hurtbox_invincibility_ended() -> void:
+	blinkAnimationPlayer.play("Stop")
+
+	
