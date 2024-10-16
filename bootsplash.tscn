@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://kdomprvaqnh"]
+
+[ext_resource type="Texture2D" uid="uid://66dq44fup2jl" path="res://270_5344272.jpg" id="1_mkp61"]
+
+[node name="bootsplash" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 320.0
+offset_bottom = 176.0
+
+[node name="2705344272" type="Sprite2D" parent="."]
+position = Vector2(160, 90)
+scale = Vector2(0.25, 0.244444)
+texture = ExtResource("1_mkp61")

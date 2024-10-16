@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dx3ids5ygjpap"]
+
+[ext_resource type="PackedScene" uid="uid://1eeorp2a8aru" path="res://Enemies/enemy_group.tscn" id="1_kg2u7"]
+[ext_resource type="Texture2D" uid="uid://bgx8lytdaynxi" path="res://battle_scene_background.jpg" id="2_pru7a"]
+
+[node name="BattleScene" type="Node2D"]
+
+[node name="EnemyGroup" parent="." instance=ExtResource("1_kg2u7")]
+position = Vector2(36, 32)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -2.0
+offset_top = -1.0
+offset_right = 292.0
+offset_bottom = 159.0
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("2_pru7a")
+expand_mode = 1

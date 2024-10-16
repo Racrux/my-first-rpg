@@ -10,10 +10,12 @@ config_version=5
 
 [application]
 
-config/name="My first RPG"
+config/name="FoxyBitch"
 run/main_scene="res://World/world.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/image="res://270_5344272.png"
+config/icon="res://favicon.ico"
+boot_splash/minimum_display_time=1500
 
 [autoload]
 
