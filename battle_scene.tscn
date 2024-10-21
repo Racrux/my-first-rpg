@@ -5,14 +5,15 @@
 
 [node name="BattleScene" type="Node2D"]
 
-[node name="EnemyGroup" parent="." instance=ExtResource("1_kg2u7")]
-position = Vector2(36, 32)
-
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_left = -2.0
-offset_top = -1.0
-offset_right = 292.0
-offset_bottom = 159.0
+offset_left = -6.0
+offset_top = -9.0
+offset_right = 297.0
+offset_bottom = 162.0
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("2_pru7a")
 expand_mode = 1
+
+[node name="EnemyGroup" parent="." instance=ExtResource("1_kg2u7")]
+position = Vector2(43, 33)
+scale = Vector2(0.5, 0.5)
