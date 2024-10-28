@@ -21,3 +21,35 @@ scale = Vector2(0.5, 0.5)
 
 [node name="PlayerGroup" parent="." instance=ExtResource("3_jydhg")]
 position = Vector2(278, 38)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="choice" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -289.0
+offset_top = -86.0
+offset_right = -224.0
+offset_bottom = 15.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.6, 0.6)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Attack" type="Button" parent="CanvasLayer/choice"]
+layout_mode = 2
+text = "Attack"
+
+[node name="Defend" type="Button" parent="CanvasLayer/choice"]
+layout_mode = 2
+disabled = true
+text = "Defend"
+
+[node name="Run" type="Button" parent="CanvasLayer/choice"]
+layout_mode = 2
+disabled = true
+text = "Run"

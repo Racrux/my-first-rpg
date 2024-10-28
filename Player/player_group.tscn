@@ -17,6 +17,7 @@ scale = Vector2(0.175357, 0.156219)
 texture = ExtResource("2_7iltk")
 
 [node name="focus" parent="George3" index="1"]
+visible = false
 position = Vector2(-32, 2)
 scale = Vector2(0.7, 0.684)
 
@@ -38,6 +39,7 @@ scale = Vector2(0.0864078, 0.0951655)
 texture = ExtResource("3_w2miu")
 
 [node name="focus" parent="George2" index="1"]
+visible = false
 position = Vector2(-39, -4)
 scale = Vector2(0.8, 0.781)
 
@@ -59,6 +61,7 @@ scale = Vector2(0.0838542, 0.0866296)
 texture = ExtResource("4_45uqw")
 
 [node name="focus" parent="George" index="1"]
+visible = false
 position = Vector2(-31, 0)
 scale = Vector2(0.7, 0.684)
 
