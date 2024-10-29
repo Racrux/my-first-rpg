@@ -17,19 +17,18 @@ scale = Vector2(0.175357, 0.156219)
 texture = ExtResource("2_7iltk")
 
 [node name="focus" parent="George3" index="1"]
-visible = false
 position = Vector2(-32, 2)
 scale = Vector2(0.7, 0.684)
 
 [node name="AnimationPlayer" parent="George3" index="2"]
 root_node = NodePath("../../George3")
 
-[node name="ProgressBar" parent="George3" index="3"]
-offset_left = -17.0
-offset_top = -28.0
-offset_right = 107.0
-offset_bottom = -1.0
-scale = Vector2(0.25, 0.25)
+[node name="progress_bar" parent="George3" index="3"]
+offset_left = -18.0
+offset_top = -29.0
+offset_right = 72.0
+offset_bottom = -2.0
+scale = Vector2(0.35, 0.35)
 
 [node name="George2" parent="." instance=ExtResource("1_4n12d")]
 
@@ -39,19 +38,18 @@ scale = Vector2(0.0864078, 0.0951655)
 texture = ExtResource("3_w2miu")
 
 [node name="focus" parent="George2" index="1"]
-visible = false
 position = Vector2(-39, -4)
 scale = Vector2(0.8, 0.781)
 
 [node name="AnimationPlayer" parent="George2" index="2"]
 root_node = NodePath("../../George2")
 
-[node name="ProgressBar" parent="George2" index="3"]
-offset_left = -19.0
-offset_top = -31.0
-offset_right = 129.0
-offset_bottom = -4.0
-scale = Vector2(0.25, 0.25)
+[node name="progress_bar" parent="George2" index="3"]
+offset_left = -20.0
+offset_top = -33.0
+offset_right = 89.0
+offset_bottom = -6.0
+scale = Vector2(0.35, 0.35)
 
 [node name="George" parent="." instance=ExtResource("1_4n12d")]
 
@@ -61,16 +59,15 @@ scale = Vector2(0.0838542, 0.0866296)
 texture = ExtResource("4_45uqw")
 
 [node name="focus" parent="George" index="1"]
-visible = false
 position = Vector2(-31, 0)
 scale = Vector2(0.7, 0.684)
 
-[node name="ProgressBar" parent="George" index="3"]
-offset_left = -13.0
-offset_top = -28.0
-offset_right = 83.0
+[node name="progress_bar" parent="George" index="3"]
+offset_left = -17.0
+offset_top = -27.0
+offset_right = 73.0
 offset_bottom = 0.0
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.35, 0.35)
 
 [editable path="George3"]
 [editable path="George2"]
