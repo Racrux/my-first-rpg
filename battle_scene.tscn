@@ -16,11 +16,11 @@ texture = ExtResource("2_pru7a")
 expand_mode = 1
 
 [node name="EnemyGroup" parent="." instance=ExtResource("1_kg2u7")]
-position = Vector2(39, 31)
+position = Vector2(57, 46)
 scale = Vector2(0.5, 0.5)
 
 [node name="PlayerGroup" parent="." instance=ExtResource("3_jydhg")]
-position = Vector2(259, 44)
+position = Vector2(246, 48)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -30,10 +30,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -35.0
-offset_top = -63.0
-offset_right = 30.0
-offset_bottom = 38.0
+offset_left = -54.0
+offset_top = -66.0
+offset_right = 11.0
+offset_bottom = 35.0
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(0.6, 0.6)
